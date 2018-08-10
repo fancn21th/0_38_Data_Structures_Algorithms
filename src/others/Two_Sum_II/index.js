@@ -18,7 +18,7 @@ var twoSum = function(numbers, target) {
       next = {},
       itemvalue = numbers[0],
       left
-  while(index <= length && itemvalue < target) {
+  while(index <= length && itemvalue <= target) {
     itemvalue = numbers[index]
     if(next[itemvalue]) {
       return [next[itemvalue], index + 1]
