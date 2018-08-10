@@ -25,7 +25,6 @@ var twoSum = function(numbers, target) {
     }
     left = target - itemvalue
     next[left] = index + 1
-    console.log(next)
     index ++;
   }
   return null;

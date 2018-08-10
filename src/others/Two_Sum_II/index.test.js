@@ -11,3 +11,10 @@ test('numbers = [2,7,11,15], target = 9', function () {
         target = 9
   expect(twosum(numbers, target)).toEqual([1,2])
 })
+
+test('numbers = [2,7,11,15], target = 22', function () {
+  const numbers = [2,7,11,15],
+        target = 9
+  expect(twosum(numbers, target)).toEqual([2,4])
+})
+
