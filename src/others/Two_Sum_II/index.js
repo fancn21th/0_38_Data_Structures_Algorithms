@@ -27,7 +27,7 @@ var twoSum = function(numbers, target) {
     next[left] = index + 1
     index ++;
   }
-  return null;
+  throw new Error('not found');
 };
 
 export default twoSum;
