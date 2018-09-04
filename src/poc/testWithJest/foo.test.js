@@ -1,4 +1,4 @@
-import timer from '../utils/timer';
+import timer from '../../blind/utils/timer';
 import * as foo from './foo';
 
 test('adds 1 + 2 to equal 3', () => {

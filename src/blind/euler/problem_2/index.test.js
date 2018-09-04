@@ -1,5 +1,5 @@
 import timer from '../../utils/timer';
-import even_fibonacci from './';
+import even_fibonacci from './index';
 
 test('The sum of even Fibonacci below 10 is 10.', () => {
   timer.start('even_fibonacci_10');
