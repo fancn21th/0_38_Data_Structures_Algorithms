@@ -1,4 +1,4 @@
-import containsDuplicate from './'
+import containsDuplicate from './index'
 
 test('numbers = [1,2,3,1]', function () {
   const numbers = [1,2,3,1]

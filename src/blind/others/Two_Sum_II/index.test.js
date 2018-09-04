@@ -1,4 +1,4 @@
-import twosum from './'
+import twosum from './index'
 
 test('numbers = [1,2], target = 3', function () {
   const numbers = [1,2],
