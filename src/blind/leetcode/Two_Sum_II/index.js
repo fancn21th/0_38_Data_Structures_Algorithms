@@ -7,27 +7,49 @@
 // Your returned answers (both index1 and index2) are not zero-based.
 //   You may assume that each input would have exactly one solution and you may not use the same element twice.
 
+// /**
+//  * @param {number[]} numbers
+//  * @param {number} target
+//  * @return {number[]}
+//  */
+// var twoSum = function(numbers, target) {
+//   var index = 0,
+//       length = numbers.length,
+//       next = {},
+//       itemvalue = numbers[0],
+//       left
+//   while(index <= length && itemvalue <= target) {
+//     itemvalue = numbers[index]
+//     if(next[itemvalue]) {
+//       return [next[itemvalue], index + 1]
+//     }
+//     left = target - itemvalue
+//     next[left] = index + 1
+//     index ++;
+//   }
+//   throw new Error('not found');
+// };
+
 /**
  * @param {number[]} numbers
  * @param {number} target
  * @return {number[]}
  */
 var twoSum = function(numbers, target) {
-  var index = 0,
-      length = numbers.length,
-      next = {},
-      itemvalue = numbers[0],
-      left
-  while(index <= length && itemvalue <= target) {
-    itemvalue = numbers[index]
-    if(next[itemvalue]) {
-      return [next[itemvalue], index + 1]
+  var smallIndex = 0,
+      largeIndex = numbers.length - 1,
+      sum = -1
+  while (smallIndex !== largeIndex) {
+    sum = numbers[smallIndex] + numbers[largeIndex]
+    if (sum === target) {
+      return [smallIndex + 1, largeIndex + 1]
+    } else if (sum < target) {
+      smallIndex += 1
+    } else {
+      largeIndex -= 1
     }
-    left = target - itemvalue
-    next[left] = index + 1
-    index ++;
   }
-  throw new Error('not found');
-};
+  throw new Error('not found')
+}
 
 export default twoSum;
