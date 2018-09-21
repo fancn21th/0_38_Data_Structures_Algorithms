@@ -24,6 +24,18 @@ test('[3,3,4,5]', () => {
   expect(result).toEqual(true)
 })
 
+test('[2,3,3,2,4]', () => {
+  const numbers = [2,3,3,2,4]
+  const result = checkPossibility(numbers)
+  expect(result).toEqual(true)
+})
+
+test('[1,2,4,5,3]', () => {
+  const numbers = [1,2,4,5,3]
+  const result = checkPossibility(numbers)
+  expect(result).toEqual(true)
+})
+
 test('[1 .. 10000] with 1 bad number', () => {
   const numbers = []
   var i = 1
@@ -46,4 +58,3 @@ test('[1 .. 10000] with 2 bad numbers', () => {
   const result = checkPossibility(numbers)
   expect(result).toEqual(false)
 })
-
