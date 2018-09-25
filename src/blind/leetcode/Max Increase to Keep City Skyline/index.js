@@ -24,13 +24,53 @@
 //               [9, 4, 8, 7],
 //               [3, 3, 3, 3] ]
 
-// solution 1
+// Notes:
+//
+//   1 < grid.length = grid[0].length <= 50.
+//   All heights grid[i][j] are in the range [0, 100].
+//   All buildings in grid[i][j] occupy the entire grid cell: that is, they are a 1 x 1 x grid[i][j] rectangular prism.
+
+// brute force solution 1
 /**
  * @param {number[][]} grid
  * @return {number}
  */
 const maxIncreaseKeepingSkyline = function(grid) {
-  return 35
+  const len = grid.length,         // length of the
+        v = Array(len).fill(0),    // the skyline vertically
+        h = []                     // the skyline horizontally
+
+  const small = function(a, b) {
+    return a <= b ? a : b
+  }
+
+  let i = 0, j, biggestH = 0, sum = 0
+
+  for(;i<len;i++) { // row idx
+    j = 0
+    biggestH = 0
+    for(;j<len;j++) { // column idx
+      if (grid[i][j] > biggestH) {
+        biggestH = grid[i][j]
+      }
+      if (grid[j][i] > v[i] ) {
+        v[i] = grid[j][i]
+      }
+    }
+    h.push(biggestH)
+  }
+
+  i = 0, j = 0
+
+  for(;i<len;i++) { // row idx
+    j = 0
+    for(;j<len;j++) { // column idx
+      // find the smaller one between h skyline and v skyline
+      sum += small(h[i], v[j]) - grid[i][j]
+    }
+  }
+
+  return sum
 }
 
 export default maxIncreaseKeepingSkyline
