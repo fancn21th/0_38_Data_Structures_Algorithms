@@ -40,10 +40,6 @@ const maxIncreaseKeepingSkyline = function(grid) {
         v = Array(len).fill(0),    // the skyline vertically
         h = []                     // the skyline horizontally
 
-  const small = function(a, b) {
-    return a <= b ? a : b
-  }
-
   let i = 0, j, biggestH = 0, sum = 0
 
   for(;i<len;i++) { // row idx
@@ -66,7 +62,7 @@ const maxIncreaseKeepingSkyline = function(grid) {
     j = 0
     for(;j<len;j++) { // column idx
       // find the smaller one between h skyline and v skyline
-      sum += small(h[i], v[j]) - grid[i][j]
+      sum += Math.min(h[i], v[j]) - grid[i][j]
     }
   }
 
