@@ -13,5 +13,6 @@ import constructMaximumBinaryTree from './index'
 //      1
 test('[3,2,1,6,0,5]', () => {
   const nums = [3,2,1,6,0,5]
-  console.log(constructMaximumBinaryTree(nums))
+  const output = constructMaximumBinaryTree(nums)
+  expect(output).toEqual([6,3,5,null,2,0,null,null,1])
 })

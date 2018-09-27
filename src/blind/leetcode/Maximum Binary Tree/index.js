@@ -19,6 +19,7 @@
 // Note:
 //   The size of the given array will be in the range [1,1000].
 
+
 /**
  * Definition for a binary tree node.
  * function TreeNode(val) {
@@ -26,41 +27,71 @@
  *     this.left = this.right = null;
  * }
  */
-
 /**
  * @param {number[]} nums
  * @return {TreeNode}
  */
-const treeNode = (val, left, right) => ({
-  val,
-  left,
-  right
-})
-
-const getMaximumNumIdx = nums => {
-  let idx = 0
-  nums.forEach((num, index) => {
-    if (num > nums[idx]) {
-      idx = index
-    }
-  })
-  return idx
+const TreeNode = function (val) {
+  this.val = val
+  this.left = this.right = null
 }
 
-const getMaximumNumNode = nums => {
+const getMaximumNode = nums => {
   if (nums.length) {
-    const maxIdx = getMaximumNumIdx(nums)
-    return treeNode(
-      nums[maxIdx],
-      getMaximumNumNode(nums.slice(0, maxIdx)),
-      getMaximumNumNode(nums.slice(maxIdx + 1))
+    const maxIdx = nums.indexOf(Math.max(...nums))
+    const node = new TreeNode(
+      nums[maxIdx]
     )
+    node.left = getMaximumNode(nums.slice(0, maxIdx))
+    node.right = getMaximumNode(nums.slice(maxIdx + 1))
+    return node
   }
   return null
 }
 
 const constructMaximumBinaryTree = nums => {
-  return getMaximumNumNode(nums)
+  return turnTreeIntoArray(getMaximumNode(nums))
+}
+
+const deQueue = (queue, arr) => {
+  if (queue.length) {
+    const tmp = []
+    // dequeue
+    while (queue.length > 0) {
+      const node = queue.shift()
+      tmp.push(node)
+      if (node) {
+        arr.push(node.val)
+      } else if (node === null) {
+        arr.push(null)
+      }
+    }
+    // queue all item in the next level
+    tmp.forEach(item => {
+      if (item) {
+        if (item.left === null && item.right === null) {
+          return
+        }
+        if (item.left || item.left === null) {
+          queue.push(item.left)
+        }
+        if (item.right || item.right === null) {
+          queue.push(item.right)
+        }
+      }
+    })
+    deQueue(queue, arr)
+  }
+}
+
+const turnTreeIntoArray = node => {
+  const queue = [], arr = []
+
+  queue.push(node)
+
+  deQueue(queue, arr)
+
+  return arr
 }
 
 export default constructMaximumBinaryTree
