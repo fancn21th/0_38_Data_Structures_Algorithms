@@ -16,11 +16,55 @@ Note:
   The range of n is [1,8].
 */
 
+
 /**
  * @param {number} n
  * @return {number}
  */
 const largestPalindrome = n => {
+  // get the range of product of n-digit numbers
+  const min = Math.pow(Math.pow(10, n - 1), 2)
+  const max = Math.pow(Math.pow(10, n), 2) - (Math.pow(10, n) * 2) + 1
+
+  // get the length of min, max
+  const minLen = min.toString().length
+  const maxLen = max.toString().length
+
+  // find largest palindrome from maxLen to minLen
+  for (let len = maxLen; len >= minLen; len --) {
+    const largest = getLargestPalindrome(len, n)
+    if( largest > 0 ) return largest
+  }
+
+  return max
+}
+
+const getLargestPalindrome = (len, n) => {
+  // get length of palindrome
+  if(len === 1) {
+    return 1
+  }
+  const isOdd = len % 2 === 1
+  const pLen = Math.floor(len/2)
+  const min = Math.pow(10, pLen - 1)
+  const max = Math.pow(10, pLen) - 1
+
+  for(let i = max; i >= min; i --) {
+    if (isOdd) {
+      for (let j = 9; j>=0; j--) {
+
+      }
+    } else {
+
+    }
+  }
+  return -1
+}
+
+const isValidPalindrome = (digit, center, n) => {
+  const bro = digit.toString()
+  const twin = bro.split('').reverse().join('')
+  const number = center >= 0 ? parseInt(bro + center + twin) : parseInt(bro + twin)
 
 }
 
