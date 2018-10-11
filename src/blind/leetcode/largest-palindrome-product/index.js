@@ -21,6 +21,8 @@ Note:
  * @param {number} n
  * @return {number}
  */
+
+// a brute force way
 const largestPalindrome = n => {
   // get the range of product of n-digit numbers
   const min = Math.pow(Math.pow(10, n - 1), 2)
@@ -32,23 +34,24 @@ const largestPalindrome = n => {
 
   // find largest palindrome from maxLen to minLen
   for (let len = maxLen; len >= minLen; len --) {
-    const largest = getLargestPalindrome(len, n)
+    const largest = getLargestPalindrome(len, n, min, max)
     if( largest > 0 ) return largest
   }
 
   return max
 }
 
-const getLargestPalindrome = (len, n) => {
+const getLargestPalindrome = (len, n, small, large) => {
   // get length of palindrome
   if(len === 1) {
     return 1
   }
   const isOdd = len % 2 === 1
-  const pLen = Math.floor(len/2)
-  const min = Math.pow(10, pLen - 1)
-  const max = Math.pow(10, pLen) - 1
+  const halfPalindromeLen = Math.floor(len/2)
+  const min = Math.pow(10, halfPalindromeLen - 1)
+  const max = Math.pow(10, halfPalindromeLen) - 1
 
+  // literate all palindromes with len-digit numbers
   for(let i = max; i >= min; i --) {
     if (isOdd) {
       for (let j = 9; j>=0; j--) {
@@ -61,11 +64,13 @@ const getLargestPalindrome = (len, n) => {
   return -1
 }
 
-const isValidPalindrome = (digit, center, n) => {
+const isValidPalindrome = (digit, center, n, small, large) => {
   const bro = digit.toString()
   const twin = bro.split('').reverse().join('')
   const number = center >= 0 ? parseInt(bro + center + twin) : parseInt(bro + twin)
-
+  if ( number < small || number > large) {
+    return false
+  }
 }
 
 export default largestPalindrome
