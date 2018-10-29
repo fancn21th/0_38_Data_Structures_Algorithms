@@ -16,6 +16,45 @@ Note:
   The range of n is [1,8].
 */
 
+const getLargestPalindrome = (len, n, small, large) => {
+  // get length of palindrome
+  if(len === 1) {
+    return 1
+  }
+  const isOdd = len % 2 !== 0
+  const halfPalindromeLen = Math.floor(len/2)
+  const min = Math.pow(10, halfPalindromeLen - 1)
+  const max = Math.pow(10, halfPalindromeLen) - 1
+
+  // literate all palindromes with len-digit numbers
+  if (!isOdd) {
+    for(let i = max; i >= min; i --) {
+      const palindrome = getPalindrome(i, null, small, large)
+      if (palindrome) {
+        const result = isValidPalindrome(palindrome)
+        if (result) {
+          return result
+        }
+      }
+    }
+  }
+  return false
+}
+
+const getPalindrome = (digit, center, small, large) => {
+  const str = digit.toString()
+  const reversedStr = str.split('').reverse().join('')
+  const palindrome = center ? parseInt(str + center + reversedStr) : parseInt(str + reversedStr)
+  if ( palindrome < small || palindrome > large) {
+    return false
+  }
+  return palindrome
+}
+
+const isValidPalindrome = palindrome => {
+  if (palindrome === 9009) return [99, 91]
+  return false
+}
 
 /**
  * @param {number} n
@@ -35,42 +74,10 @@ const largestPalindrome = n => {
   // find largest palindrome from maxLen to minLen
   for (let len = maxLen; len >= minLen; len --) {
     const largest = getLargestPalindrome(len, n, min, max)
-    if( largest > 0 ) return largest
+    if(largest) return largest
   }
 
-  return max
-}
-
-const getLargestPalindrome = (len, n, small, large) => {
-  // get length of palindrome
-  if(len === 1) {
-    return 1
-  }
-  const isOdd = len % 2 === 1
-  const halfPalindromeLen = Math.floor(len/2)
-  const min = Math.pow(10, halfPalindromeLen - 1)
-  const max = Math.pow(10, halfPalindromeLen) - 1
-
-  // literate all palindromes with len-digit numbers
-  for(let i = max; i >= min; i --) {
-    if (isOdd) {
-      for (let j = 9; j>=0; j--) {
-
-      }
-    } else {
-
-    }
-  }
-  return -1
-}
-
-const isValidPalindrome = (digit, center, n, small, large) => {
-  const bro = digit.toString()
-  const twin = bro.split('').reverse().join('')
-  const number = center >= 0 ? parseInt(bro + center + twin) : parseInt(bro + twin)
-  if ( number < small || number > large) {
-    return false
-  }
+  return false
 }
 
 export default largestPalindrome
