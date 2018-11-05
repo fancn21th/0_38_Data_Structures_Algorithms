@@ -16,7 +16,7 @@ Note:
   The range of n is [1,8].
 */
 
-const getLargestPalindrome = (len, n, small, large) => {
+const getLargestPalindromeByLen = (len, n, small, large) => {
   // get length of palindrome
   if(len === 1) {
     return 1
@@ -29,30 +29,38 @@ const getLargestPalindrome = (len, n, small, large) => {
   // literate all palindromes with len-digit numbers
   if (!isOdd) {
     for(let i = max; i >= min; i --) {
-      const palindrome = getPalindrome(i, null, small, large)
-      if (palindrome) {
-        const result = isValidPalindrome(palindrome)
-        if (result) {
-          return result
-        }
+      const palindrome = getPalindrome(i, null)
+      // if (palindrome > small
+      //   && palindrome < large
+      //   && isValidPalindrome(palindrome, n)) {
+      //   return palindrome % 1337
+      // }
+      if (palindrome > small
+        && palindrome < large) {
+        const result = isValidPalindrome(palindrome, n)
+        if (result) return result
       }
     }
   }
   return false
 }
 
-const getPalindrome = (digit, center, small, large) => {
+const getPalindrome = (digit, center) => {
   const str = digit.toString()
   const reversedStr = str.split('').reverse().join('')
   const palindrome = center ? parseInt(str + center + reversedStr) : parseInt(str + reversedStr)
-  if ( palindrome < small || palindrome > large) {
-    return false
-  }
   return palindrome
 }
 
-const isValidPalindrome = palindrome => {
-  if (palindrome === 9009) return [99, 91]
+const isValidPalindrome = (palindrome, n) => {
+  const min = Math.pow(10, n - 1)
+  const max = Math.pow(10, n) - 1
+  for (let i = max; i > min; i--)  {
+    const div = palindrome / i
+    if(palindrome % i === 0 && div.toString().length === n) {
+      return [palindrome, i, div]
+    }
+  }
   return false
 }
 
@@ -73,7 +81,7 @@ const largestPalindrome = n => {
 
   // find largest palindrome from maxLen to minLen
   for (let len = maxLen; len >= minLen; len --) {
-    const largest = getLargestPalindrome(len, n, min, max)
+    const largest = getLargestPalindromeByLen(len, n, min, max)
     if(largest) return largest
   }
 
