@@ -19,7 +19,7 @@ Note:
 const getLargestPalindromeByLen = (len, n, small, large) => {
   // get length of palindrome
   if(len === 1) {
-    return 1
+    return [9, 3, 3]
   }
   const isOdd = len % 2 !== 0
   const halfPalindromeLen = Math.floor(len/2)
@@ -35,8 +35,7 @@ const getLargestPalindromeByLen = (len, n, small, large) => {
       //   && isValidPalindrome(palindrome, n)) {
       //   return palindrome % 1337
       // }
-      if (palindrome > small
-        && palindrome < large) {
+      if (palindrome > small && palindrome < large) {
         const result = isValidPalindrome(palindrome, n)
         if (result) return result
       }
@@ -55,6 +54,11 @@ const getPalindrome = (digit, center) => {
 const isValidPalindrome = (palindrome, n) => {
   const min = Math.pow(10, n - 1)
   const max = Math.pow(10, n) - 1
+  /*
+    if n = 3
+      min = 100
+      max = 999
+  */
   for (let i = max; i > min; i--)  {
     const div = palindrome / i
     if(palindrome % i === 0 && div.toString().length === n) {
@@ -82,7 +86,7 @@ const largestPalindrome = n => {
   // find largest palindrome from maxLen to minLen
   for (let len = maxLen; len >= minLen; len --) {
     const largest = getLargestPalindromeByLen(len, n, min, max)
-    if(largest) return largest
+    if (largest) return largest
   }
 
   return false

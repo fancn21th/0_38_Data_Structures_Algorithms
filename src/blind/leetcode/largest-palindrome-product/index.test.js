@@ -21,3 +21,17 @@ test('5 => 987', () => {
   console.timeEnd('run')
 })
 
+test('6 => 987', () => {
+  console.time('run')
+  const result = largestPalindrome(6)
+  expect(result).toEqual([999000000999, 999999, 999001])
+  console.timeEnd('run')
+})
+
+test('8 => 987', () => {
+  console.time('run')
+  const result = largestPalindrome(8)
+  expect(result).toEqual([9966006699, 99979, 99681])
+  console.timeEnd('run')
+})
+
