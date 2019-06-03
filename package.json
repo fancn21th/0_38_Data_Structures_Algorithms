@@ -1,5 +1,5 @@
 {
-  "name": "0_38_Data_Structures_Algorithems",
+  "name": "data_structures_algorithems",
   "version": "1.0.0",
   "description": "This is going to be a long lived repo, since I will use it as a code base for recap of data structures and algorithems",
   "main": "index.js",
@@ -18,9 +18,9 @@
   },
   "homepage": "https://github.com/fancn21th/0_38_Data_Structures_Algorithems#readme",
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-jest": "^22.1.0",
-    "babel-preset-env": "^1.6.1",
-    "jest": "^22.1.4"
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0"
   }
 }
