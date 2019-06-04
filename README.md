@@ -1,6 +1,6 @@
 # Data Structures & Algorithms
 
-This is going to be a long lived repo, since I will use it as a code base for recap of data structures and algorithems
+This is going to be a long lived repo, since I will use it as a code base for recap of data structures and algorithms
 
 ## Environment Setup
 
