@@ -18,7 +18,7 @@ class Queue {
     return this.oldestOnTop[this.oldestOnTop.length - 1];
   }
   dequeue() {
-    shiftStacks();
+    this.shiftStacks();
     return this.oldestOnTop.pop();
   }
 }
