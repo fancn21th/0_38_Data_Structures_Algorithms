@@ -1,25 +1,27 @@
-const match = {
-  "]": "[",
-  "}": "{",
-  ")": "("
+const tokens = {
+  "[": "]",
+  "{": "}",
+  "(": ")"
 };
 
-const openTerm = ["{", "[", "("];
-const closeTerm = ["}", "]", ")"];
+const isOpenTerm = function(char) {
+  return Object.keys(tokens).includes(char);
+};
+
+const termsMatch = function(openTerm, closeTerm) {
+  return tokens[openTerm] === closeTerm;
+};
 
 const isBalanced = function(expression) {
   const arr = expression.split("");
   const stack = [];
   for (let i = 0; i < arr.length; i++) {
     const item = arr[i];
-    if (openTerm.includes(item)) {
+    if (isOpenTerm(item)) {
       stack.push(item);
     } else {
-      const isCloseTerm = closeTerm.includes(item);
-      if (isCloseTerm) {
-        if (stack.length === 0 || stack.pop() !== match[item]) {
-          return false;
-        }
+      if (stack.length === 0 || !termsMatch(stack.pop(), item)) {
+        return false;
       }
     }
   }
