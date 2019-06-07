@@ -35,7 +35,9 @@ class LinkedList {
   // removeElement(element)
 
   // Helper Methods
-  // isEmpty
+  isEmpty() {
+    return this._size === 0;
+  }
   get head() {
     return this._head;
   }

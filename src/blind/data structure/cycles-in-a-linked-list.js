@@ -1,4 +1,6 @@
 const hasCycle = function(linkedList) {
+  if (linkedList.isEmpty()) return false;
+
   let slow = linkedList.head;
   let fast = linkedList.head.next;
 
