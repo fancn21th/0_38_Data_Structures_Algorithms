@@ -1,10 +1,14 @@
 import hasCycle from "./cycles-in-a-linked-list";
 import { createLinkedListFromArray } from "../dsjs/utils/ListCreator";
 
-let cycledLinkedList, notCycledLinkedList, emptyLinkedList;
+let cycledLinkedList,
+  notCycledLinkedList,
+  emptyLinkedList,
+  singleNodeLinkedLIst;
 
 beforeEach(() => {
   emptyLinkedList = createLinkedListFromArray([]);
+  singleNodeLinkedLIst = createLinkedListFromArray([1]);
   notCycledLinkedList = createLinkedListFromArray([1, 2, 3]);
   cycledLinkedList = createLinkedListFromArray([1, 2, 3, 4, 5]);
   cycledLinkedList.tail.next = cycledLinkedList.getAt(3);
@@ -13,6 +17,11 @@ beforeEach(() => {
 describe("detect a cycle in lined list", function() {
   test("check empty linked list", function() {
     const result = hasCycle(emptyLinkedList);
+    expect(result).toEqual(false);
+  });
+
+  test("check single node linked list", function() {
+    const result = hasCycle(singleNodeLinkedLIst);
     expect(result).toEqual(false);
   });
 
