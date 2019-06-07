@@ -1,5 +1,6 @@
 import Node from "./Node";
 
+// refer to https://www.geeksforgeeks.org/implementation-linkedlist-javascript/
 class LinkedList {
   constructor() {
     this._head = null;
