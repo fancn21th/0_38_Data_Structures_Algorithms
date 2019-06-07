@@ -11,3 +11,8 @@
 - drop constants
 
 - different inputs => different variables
+
+- drop non-dominate terms
+  - o(n) + o(n^2)
+    - o(n^2) <= o(n + n^@) <= o(n^2 + n^2)
+    - o(n^2)
